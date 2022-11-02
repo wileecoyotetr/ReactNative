@@ -1,32 +1,39 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet, Button, FlatList } from "react-native";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 const ColorScreen = () => {
 
+    const [colors, setColors] = useState([]);
 
     return (
         < View >
             <Button title="Add a Color"
                 onPress={() => {
-                    setCounter(counter + 1)
-                    console.log("counter:" + counter)
+                    setColors([...colors, randomRgb()]);
                 }}></Button>
-            <View
-            //'rgb(0,250,0)' 
-                style={{ height: 100, width: 100, backgroundColor: randomRgb() }}>
-
-            </View>
+                
+            <FlatList
+                keyExtractor={item => item}
+                data={colors}
+                renderItem={({ item }) => {
+                    return (
+                        //<View style={{ height: 100, width: 100, backgroundColor: item }} />
+                        <View style={{ height: 100, width: 100, backgroundColor: item }}/> 
+                    );
+                }}
+            ></FlatList>
         </View >
     );
 };
 
 const randomRgb = () => {
-    const red = Math.floor(Math.random() *256);
-    const green = Math.floor(Math.random() *256);
-    const blue = Math.floor(Math.random() *256);
+    const red = Math.floor(Math.random() * 256);
+    const green = Math.floor(Math.random() * 256);
+    const blue = Math.floor(Math.random() * 256);
 
-    return `rgb (${red},${green},${blue})`
-}
+    return `rgb(${red},${green},${blue})`;
+};
 
 const style = StyleSheet.create({});
 
