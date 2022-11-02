@@ -8,7 +8,6 @@ const SquareScreen = () => {
         <ColorCounter color="Green"/>
         <ColorCounter color="Blue"/>
     </View>
-
 };
 
 const style = StyleSheet.create({});
